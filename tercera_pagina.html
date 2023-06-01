@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tercera Página</title>
+  <style>
+	@font-face {
+      font-family: 'px';
+      src: url('fuente.ttf') format('truetype');
+    }
+    body {
+	font-family: 'px', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("bg.jpg");
+      background-size: cover;
+      cursor: move;
+      overflow: hidden;
+    }
+
+    .menu {
+      position: absolute;
+      top: 15px;
+      left: 10px;
+    }
+
+    .menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+	align-items: center;
+    }
+
+    .menu li {
+      margin-right: 10px;
+    }
+
+    .menu a, .menu button {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 16px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background-color: #000;
+      font-size: 18px;
+    }
+
+    .menu a:hover, .menu button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .image {
+      position: absolute;
+      cursor: pointer;
+      width: 200px;
+      height: 200px;
+      bottom: 20px;
+    }
+
+    .top-left {
+      top: 60px;
+      left: 10px;
+    }
+
+    .top-right {
+      top: 60px;
+      right: 10px;
+    }
+
+    .bottom-left {
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .bottom-right {
+      bottom: 20px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body onmousemove="scrollPage(event)">
+  <div class="menu">
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="otra_pagina.html">Menú</a></li>
+     <li><button onclick="toggleMute() "style="font-family: px, sans-serif;">Mute</button></li>
+      <li><a href="#" onclick="toggleFullscreen()">Pantalla completa</a></li>
+    </ul>
+  </div>
+
+  <a href="pagina1.html"><img class="image top-left" src="p1.png" alt="Imagen 1"></a>
+  <a href="pagina2.html"><img class="image top-right" src="p2.png" alt="Imagen 2"></a>
+  <a href="pagina3.html"><img class="image bottom-left" src="p3.png" alt="Imagen 3"></a>
+  <a href="pagina4.html"><img class="image bottom-right" src="p4.png" alt="Imagen 4"></a>
+
+  <audio id="backgroundAudio" autoplay loop>
+    <source src="a1.mp3" type="audio/mp3">
+    <source src="a1.ogg" type="audio/ogg">
+    Tu navegador no admite la reproducción de audio.
+  </audio>
+
+  <script>
+    const audio = document.getElementById('backgroundAudio');
+    const muteButton = document.getElementById('muteButton');
+
+    function toggleMute() {
+      audio.muted = !audio.muted;
+      muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
+    }
+
+    function scrollPage(event) {
+      const scrollSpeed = 6;
+      const { clientX, clientY } = event;
+      const { innerWidth, innerHeight, scrollX, scrollY } = window;
+      const scrollAmount = scrollSpeed;
+
+      if (clientX <= scrollSpeed) {
+        window.scrollTo(scrollX - scrollAmount, scrollY);
+      } else if (clientX >= innerWidth - scrollSpeed) {
+        window.scrollTo(scrollX + scrollAmount, scrollY);
+      }
+
+      if (clientY <= scrollSpeed) {
+        window.scrollTo(scrollX, scrollY - scrollAmount);
+      } else if (clientY >= innerHeight - scrollSpeed) {
+        window.scrollTo(scrollX, scrollY + scrollAmount);
+      }
+    }
+
+    function toggleFullscreen() {
+      const elem = document.documentElement;
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { // Firefox
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { // Chrome, Safari y Opera
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { // IE/Edge
+          elem.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari y Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Otra Página</title>
+  <style>
+@font-face {
+      font-family: 'px';
+      src: url('fuente.ttf') format('truetype');
+    }
+    body {
+	font-family: 'px', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url("bg.jpg");
+      background-size: cover;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .column {
+      flex: 1;
+      padding: 0 20px;
+    }
+
+    .button {
+	font-family: 'px', sans-serif;
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 16px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background-color: #000;
+      font-size: 18px;
+    }
+    .button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="column">
+      <h1>:)</h1>
+      <p>¡Saludos!</p>
+    </div>
+    <div class="column">
+      <h1>:)</h1>
+      <p>Bienvenidos a la pagina.</p>
+    </div>
+  </div>
+
+  <button class="button" onclick="window.location.href='tercera_pagina.html'">Comenzar</button>
+</body>
+</html>
